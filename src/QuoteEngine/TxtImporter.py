@@ -1,25 +1,36 @@
+""" This module defines the TXT import approach """
 from typing import List
 
+""" Import base class IngestorInterface """
 from .IngestorInterface import IngestorInterface
 from .QuoteEngine import QuoteModel
 
+
 class TxtImporter(IngestorInterface):
+    """class to define the TXT Import routine """
+
     allowed_extensions = ['txt']
 
+    """ parse method is realized here (base class IngesterInterface)
+     This method read in each lines from the imported file,
+    strip the line carriage return, and break the string by -
+    The resulted 2 strings are sent in the QuoteModel to compose
+    the quote 
+     """
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         if not cls.can_ingest(path):
-            raise Exception('cannot ingest exception')
+            raise Exception('Txt Importer cannot ingest exception')
 
-        file_ref = open(path, 'r')
         quotes = []
 
-        for line in file_ref.readlines():
-            line = line.strip('\n\r').strip()
-            if len(line) > 0:
-                parse = line.split('-')
-                new_quote = QuoteModel(parse[0], parse[1])
-                quotes.append(new_quote)
+        with open(path, 'r', encoding='utf8') as file_ref:
+            for line in file_ref.readlines():
+                line = line.strip('\n\r').strip()
+                if len(line) > 0:
+                    """ dash delimited quotes, quote - author """
+                    parse = line.split('-')
+                    new_quote = QuoteModel(parse[0], parse[1])
+                    quotes.append(new_quote)
 
-        file_ref.close()
         return quotes

@@ -1,3 +1,6 @@
+""" this class will choose the correct document type py
+    based on file extension
+"""
 from typing import List
 
 from .IngestorInterface import IngestorInterface
@@ -7,11 +10,15 @@ from .DocxImporter import DocxImporter
 from .PDFImporter import PDFImporter
 from .TxtImporter import TxtImporter
 
+
 class Ingestor(IngestorInterface):
-    ingestors = [DocxImporter,CSVImporter, PDFImporter, TxtImporter]
+    ingestors = [DocxImporter, CSVImporter, PDFImporter, TxtImporter]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         for ingestor in cls.ingestors:
             if ingestor.can_ingest(path):
-                return ingestor.parse(path)
+                try:
+                    return ingestor.parse(path)
+                except Exception as e:
+                    print(e)

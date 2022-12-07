@@ -6,4 +6,4 @@ from QuoteEngine import Ingestor
 # print(PDFImporter.parse('./_data/DogQuotes/DogQuotesPDF.pdf'))
 # print(TxtImporter.parse('./_data/DogQuotes/DogQuotesTXT.txt'))
 
-print(Ingestor.parse('./_data/DogQuotes/DogQuotesTXT.txt'))
+print(Ingestor.parse('./_data/DogQuotes/DogQuotesPDF.pdf'))
