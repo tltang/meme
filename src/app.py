@@ -67,26 +67,32 @@ def meme_form():
 def meme_post():
     """Create a user defined meme."""
     image_url = request.form['image_url']
-    quote = request.form['quote']
+    quote = request.form['body']
     author = request.form['author']
 
     # 1. Use requests to save the image from the image_url
     #    form param to a temp local file.
     try:
         r = requests.get(image_url, allow_redirects=True)
-    except requests.exceptions.ConnectionError:
-        print("<Enter user friendly error message>")
-        return render_template('meme_error.html')
+#    except requests.exceptions.ConnectionError:
+    except Exception as e:
+        print(e)
+        return render_template('meme_error1.html')
     else:
         tmp = f'./tmp/{random.randint(0, 10000000)}.png'
-        img = open(tmp, 'wb').write(r.content)
+        with open(tmp, 'wb') as img:
+            img.write(r.content)
         # 2. Use the meme object to generate a meme using this temp
-        path = meme.make_meme(tmp, quote, author)
-        #    file and the body and author form paramaters.
-        # 3. Remove the temporary saved image.
-        os.remove(tmp)
-    finally:
-        return render_template('meme.html', path=path)
+        try:
+            path = meme.generate_postcard(tmp, quote, author)
+        except Exception as e:
+            print(e)
+            return render_template('meme_error2.html')
+        else:
+            #    file and the body and author form paramaters.
+            # 3. Remove the temporary saved image.
+            os.remove(tmp)
+            return render_template('meme.html', path=path)
 
 
 if __name__ == "__main__":
