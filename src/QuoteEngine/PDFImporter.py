@@ -10,7 +10,7 @@ from .QuoteEngine import QuoteModel
 
 
 class PDFImporter(IngestorInterface):
-    """Parses *.pdf and returns list of QuoteModel classes """
+    """Parses *.pdf and returns list of QuoteModel classes."""
 
     allowed_extensions = ['pdf']
 
@@ -21,6 +21,13 @@ class PDFImporter(IngestorInterface):
     the quote """
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse .PDF file and return a list of QuoteModel classes.
+
+        Arguments:
+            path {str} -- file to parse location
+        Returns:
+            List -- List of QuoteModel classes
+        """
         if not cls.can_ingest(path):
             raise Exception('PDF Importer cannot ingest exception')
 

@@ -3,12 +3,12 @@ import docx
 from .IngestorInterface import IngestorInterface
 from .QuoteEngine import QuoteModel
 
-""" This module defines the DOCX import approach """
-""" 3rd line Import base class IngestorInterface """
+"""This module defines the DOCX import approach """
+"""3rd line Import base class IngestorInterface """
 
 
 class DocxImporter(IngestorInterface):
-    """class to define the DOCX Import routine """
+    """class to define the DOCX Import routine."""
 
     allowed_extensions = ['docx']
 
@@ -19,6 +19,13 @@ class DocxImporter(IngestorInterface):
     the quote """
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse .docx file and return a list of QuoteModel classes.
+
+        Arguments:
+            path {str} -- file to parse location
+        Returns:
+            List -- List of QuoteModel classes
+        """
         if not cls.can_ingest(path):
             raise Exception('Docx Importer cannot ingest exception')
 

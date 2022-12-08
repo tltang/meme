@@ -1,5 +1,7 @@
-""" This module defines the base class that accesses
-    the parent from multiple children (PDF/CSV/DOCX/TXT) """
+"""This module defines the base class.
+
+Accesses the parent from multiple children (PDF/CSV/DOCX/TXT)
+"""
 
 from abc import ABC, abstractmethod
 from typing import List
@@ -7,23 +9,40 @@ from .QuoteEngine import QuoteModel
 
 
 class IngestorInterface(ABC):
+    """Abstract class.
 
-    """ this variable can be overriden at individual class object
-        to add the suited file extensions
+    The abstract method parse will be overwritten
+    at class level.
     """
+
     allowed_extensions = []
 
     @classmethod
     def can_ingest(cls, path: str):
-        """ check file extension """
+        """Check if file extension is supported.
+
+        Arguments:
+            path {str} -- file to parse location
+
+        Returns:
+            bool -- whether file extension is supported
+        """
+        # check file extension
         ext = path.split('.')[-1]
         return ext in cls.allowed_extensions
 
     @classmethod
     @abstractmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """ this abstract class only defines the function name,
-            the extending classes need to realize this in
-            their own class object files
+        """Abstract class.
+
+        The extending classes need to realize this in
+        their own class object files.
+
+        Arguments:
+            path {str} -- file to parse location
+
+        Returns:
+            List -- List of QuoteModel classes
         """
         pass

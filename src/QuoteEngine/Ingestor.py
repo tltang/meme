@@ -1,6 +1,5 @@
-""" this class will choose the correct document type py
-    based on file extension
-"""
+"""This class will choose the importer based on file extension."""
+
 from typing import List
 
 from .IngestorInterface import IngestorInterface
@@ -12,10 +11,13 @@ from .TxtImporter import TxtImporter
 
 
 class Ingestor(IngestorInterface):
+    """This class will choose the importer based on file extension."""
+
     ingestors = [DocxImporter, CSVImporter, PDFImporter, TxtImporter]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse the quote and author to return the list of quote models."""
         for ingestor in cls.ingestors:
             if ingestor.can_ingest(path):
                 try:

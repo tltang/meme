@@ -8,7 +8,7 @@ from .QuoteEngine import QuoteModel
 
 
 class CSVImporter(IngestorInterface):
-    """class to define the CSV Import routine """
+    """class to define the CSV Import routine."""
 
     allowed_extensions = ['csv']
 
@@ -19,6 +19,13 @@ class CSVImporter(IngestorInterface):
     the quote """
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse .CSV file and return a list of QuoteModel classes.
+
+        Arguments:
+            path {str} -- file to parse location
+        Returns:
+            List -- List of QuoteModel classes
+        """
         if not cls.can_ingest(path):
             raise Exception('CSV Importer cannot ingest exception')
 

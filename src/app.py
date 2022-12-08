@@ -12,8 +12,7 @@ meme = MemeEngine('./static')
 
 
 def setup():
-    """ Load all resources """
-
+    """Load all resources."""
     quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                    './_data/DogQuotes/DogQuotesDOCX.docx',
                    './_data/DogQuotes/DogQuotesPDF.pdf',
@@ -39,7 +38,7 @@ quotes, imgs = setup()
 
 @app.route('/')
 def meme_rand():
-    """ Generate a random meme """
+    """Generate a random meme."""
     # 1. select a random image from imgs array
     img = random.choice(imgs)
     # 2. select a random quote from the quotes array
@@ -51,13 +50,13 @@ def meme_rand():
 
 @app.route('/create', methods=['GET'])
 def meme_form():
-    """ User input for meme information """
+    """User input for meme information."""
     return render_template('meme_form.html')
 
 
 @app.route('/create', methods=['POST'])
 def meme_post():
-    """ Create a user defined meme """
+    """Create a user defined meme."""
     image_url = request.form['image_url']
     quote = request.form['quote']
     author = request.form['author']

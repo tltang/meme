@@ -7,11 +7,13 @@ from MemeEngine import MemeEngine
 
 
 def generate_postcard(path=None, quotebody=None, author=None):
-    """ Generate a meme given a path and a quote
+    """Generate a meme given a path and a quote.
+
     Arguments:
         path {str} -- path to an image file
         quotebody {str} -- quote body to add to the image
         author {str} -- quote author to add to the image
+
     Returns:
         path {str} -- generated meme image file location
     """
@@ -41,7 +43,7 @@ def generate_postcard(path=None, quotebody=None, author=None):
     else:
         if author is None:
             raise Exception('Author is not found in Quote')
-        quote = QuoteEngine(quote, author)
+        quote = QuoteEngine.QuoteModel(quotebody, author)
 
     meme = MemeEngine('./tmp')
     path = meme.generate_postcard(img, quote.quote, quote.author)
@@ -55,11 +57,13 @@ if __name__ == "__main__":
     parser.add_argument('--path', type=str, default=None,
                         help="path to an image file")
     # body - quote body to add to the image
-    parser.add_argument('--quote', type=str, default=None,
+    parser.add_argument('--quotebody', type=str, default=None,
                         help="quote to add to the image")
     # author - quote author to add to the image
     parser.add_argument('--author', type=str, default=None,
                         help="quote author to add to the image")
 
     args = parser.parse_args()
-    print(generate_postcard(args.path, args.quote, args.author))
+
+    print(generate_postcard(path=args.path, quotebody=args.quotebody,
+                            author=args.author))
