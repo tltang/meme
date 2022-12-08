@@ -1,3 +1,12 @@
+"""
+web main program.
+
+python app.py to display the web UI.
+
+Author: Lisa Tang
+Date:   12/8/2022
+"""
+
 import random
 import os
 import requests
@@ -63,17 +72,21 @@ def meme_post():
 
     # 1. Use requests to save the image from the image_url
     #    form param to a temp local file.
-    r = requests.get(image_url, allow_redirects=True)
-    tmp = f'./tmp/{random.randint(0, 10000000)}.png'
-    img = open(tmp, 'wb').write(r.content)
-    # 2. Use the meme object to generate a meme using this temp
-    path = meme.make_meme(tmp, quote, author)
-    #    file and the body and author form paramaters.
-    # 3. Remove the temporary saved image.
-
-    os.remove(tmp)
-
-    return render_template('meme.html', path=path)
+    try:
+        r = requests.get(image_url, allow_redirects=True)
+    except requests.exceptions.ConnectionError:
+        print("<Enter user friendly error message>")
+        return render_template('meme_error.html')
+    else:
+        tmp = f'./tmp/{random.randint(0, 10000000)}.png'
+        img = open(tmp, 'wb').write(r.content)
+        # 2. Use the meme object to generate a meme using this temp
+        path = meme.make_meme(tmp, quote, author)
+        #    file and the body and author form paramaters.
+        # 3. Remove the temporary saved image.
+        os.remove(tmp)
+    finally:
+        return render_template('meme.html', path=path)
 
 
 if __name__ == "__main__":

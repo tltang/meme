@@ -1,10 +1,13 @@
+"""
+This module defines the CSV import approach.
+
+Author: Lisa Tang
+Date:   12/8/2022
+"""
 from typing import List
 import pandas
 from .IngestorInterface import IngestorInterface
 from .QuoteEngine import QuoteModel
-
-""" This module defines the CSV import approach """
-""" the 3rd line import base class IngestorInterface """
 
 
 class CSVImporter(IngestorInterface):

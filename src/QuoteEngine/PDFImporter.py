@@ -1,12 +1,15 @@
+"""
+This module defines the PDF import approach.
+
+Author: Lisa Tang
+Date:   12/8/2022
+"""
 from typing import List
 import subprocess
 import os
 import random
 from .IngestorInterface import IngestorInterface
 from .QuoteEngine import QuoteModel
-
-""" This module defines the PDF import approach """
-""" 5th line Import base class IngestorInterface """
 
 
 class PDFImporter(IngestorInterface):

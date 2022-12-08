@@ -1,8 +1,11 @@
-"""This module defines the base class.
+"""
+This module defines the base class.
 
 Accesses the parent from multiple children (PDF/CSV/DOCX/TXT)
-"""
 
+Author: Lisa Tang
+Date:   12/8/2022
+"""
 from abc import ABC, abstractmethod
 from typing import List
 from .QuoteEngine import QuoteModel

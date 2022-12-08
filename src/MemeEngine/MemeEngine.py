@@ -1,12 +1,20 @@
-"""Resize image, and Quote and Author on it"""
+"""
+This class is to Resize image, and Quote and Author on it.
+
+Author: Lisa Tang
+Date:   12/8/2022
+"""
+
 from PIL import Image, ImageDraw, ImageFont
 import random
 
 
 class MemeEngine:
-    """class to resize image, and add Quote and Author on it"""
+    """class to resize image, and add Quote and Author on it."""
+
     def __init__(self, img_out_path='./static'):
         """Initialize instance.
+
         Arguments:
             img_out_path {str} -- edited images output location
         """
@@ -14,7 +22,8 @@ class MemeEngine:
 
     def generate_postcard(self, img_path, quotebody=None, author=None,
                           width=500) -> str:
-        """Create a Postcard With a Text Greeting
+        """Create a Postcard With a Text Greeting.
+
         Arguments:
             img_path {str} -- the file location for the input image
             quotebody {str} -- quote from quote engine
@@ -23,7 +32,6 @@ class MemeEngine:
         Returns:
             str -- the file path to the output image
         """
-
         # open image
         with Image.open(img_path) as img:
 
@@ -70,6 +78,10 @@ class MemeEngine:
                 return out_path
 
     def __repr__(self):
+        """Execute every time when we run print(QuoteModel).
+
+        Official string rep, typically used for debugging.
+        """
         return f'Image Output Path: {self.img_out_path}'
 
 

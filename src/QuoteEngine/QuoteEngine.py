@@ -1,3 +1,10 @@
+"""
+Define Quote Model to store the quote body and author.
+
+Author: Lisa Tang
+Date:   12/8/2022
+"""
+
 
 class QuoteModel:
     """QuoteModel Class.

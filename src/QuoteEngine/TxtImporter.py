@@ -1,9 +1,12 @@
+"""
+This module defines the Txt import approach.
+
+Author: Lisa Tang
+Date:   12/8/2022
+"""
 from typing import List
 from .IngestorInterface import IngestorInterface
 from .QuoteEngine import QuoteModel
-
-""" This module defines the TXT import approach """
-""" Import base class IngestorInterface """
 
 
 class TxtImporter(IngestorInterface):

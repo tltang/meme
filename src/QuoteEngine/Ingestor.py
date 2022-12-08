@@ -1,5 +1,9 @@
-"""This class will choose the importer based on file extension."""
+"""
+This class will choose the importer based on file extension.
 
+Author: Lisa Tang
+Date:   12/8/2022
+"""
 from typing import List
 
 from .IngestorInterface import IngestorInterface

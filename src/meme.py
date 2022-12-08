@@ -1,3 +1,16 @@
+"""
+command line main program.
+
+python meme.py to use the project from command line.
+
+Arguments:
+    --path {str} -- optional, file to parse location
+    --author {str} -- optional, the author you want to print on the image
+    --quotebody {str} -- optional, the quote you want to print on the image
+Author: Lisa Tang
+Date:   12/8/2022
+"""
+
 import os
 import random
 import argparse

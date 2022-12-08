@@ -1,10 +1,13 @@
+"""
+This module defines the DOCX import approach.
+
+Author: Lisa Tang
+Date:   12/8/2022
+"""
 from typing import List
 import docx
 from .IngestorInterface import IngestorInterface
 from .QuoteEngine import QuoteModel
-
-"""This module defines the DOCX import approach """
-"""3rd line Import base class IngestorInterface """
 
 
 class DocxImporter(IngestorInterface):
